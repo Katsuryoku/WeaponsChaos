@@ -6,6 +6,7 @@ class Analyse
 {
 public:
     Analyse();
+
 };
 
 #endif // ANALYSE_H

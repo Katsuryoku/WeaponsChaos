@@ -12,10 +12,14 @@ public:
     Analyse();
     void apprentissage();
     Mat getImage(string s);
-    void extract();
+    Mat extract(Mat m);
     void classer();
     void calculCarac();
     void giveClass();
+    Mat getSkin(Mat m);
+    vector<float> hog(Mat m,string s);
+    vector<float> lbp(Mat m,string s);
+
 };
 
 #endif // ANALYSE_H

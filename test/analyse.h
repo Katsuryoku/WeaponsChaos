@@ -19,6 +19,8 @@ public:
     Mat getSkin(Mat m);
     vector<float> hog(Mat m,string s);
     vector<float> lbp(Mat m,string s);
+    float eccentricity(Mat m);
+    float convex(Mat m);
 
 };
 

@@ -14,15 +14,15 @@ int main()
 
 
 
+    //vector<float> v = b.hog(mask,"hsv");
+   // vector<float> v2 = b.hog(mask,"bgr");
 
-
-    vector<float> v = b.hog(m,"hsv");
-    vector<float> v2 = b.hog(m,"bgr");
-
-    vector<float> v3 = b.lbp(m,"hsv");
-    vector<float> v4 = b.lbp(m,"bgr");
+   // vector<float> v3 = b.lbp(mask,"hsv");
+    //vector<float> v4 = b.lbp(mask,"bgr");
 
     imshow( "Display window", mask );                   // Show our image inside it.
     waitKey(0);
     return 0;
 }
+
+

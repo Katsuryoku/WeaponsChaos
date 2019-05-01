@@ -154,3 +154,41 @@ vector<float> Analyse::lbp(Mat m,string s){
         return f;
 
 }
+
+float Analyse::eccentricity(Mat m){
+
+    Mat m1;
+    cvtColor(m,m1,CV_BGR2GRAY);
+    vector<Vec4i> hierarchy;
+    vector<vector<Point> > contours;
+    findContours( m, contours,hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+
+
+    RotatedRect r = fitEllipse(contours);
+    float M = r.size.width;
+    float M2 = r.size.height;
+
+    float mini = min(M,M2);
+    float maxi = max(M,M2);
+
+
+    return sqrt(1-(mini/maxi)*(mini/maxi));
+
+
+
+}
+
+float Analyse::convex(Mat m){
+
+    Mat m1;
+    cvtColor(m,m1,CV_BGR2GRAY);
+    vector<Vec4i> hierarchy;
+    vector<vector<Point> > contours;
+    findContours( m, contours,hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+
+    Mat m2;
+
+    convexHull(contours,m2);
+    return float(contourArea(contours))/contourArea(m2);
+
+}

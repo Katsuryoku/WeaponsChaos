@@ -21,6 +21,8 @@ public:
     vector<float> lbp(Mat m,string s);
     float eccentricity(Mat m);
     float convex(Mat m);
+    Mat train(string s);
+
 
 };
 

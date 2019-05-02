@@ -1,4 +1,7 @@
 #include "analyse.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 Analyse::Analyse()
 {
@@ -190,5 +193,133 @@ float Analyse::convex(Mat m){
 
     convexHull(contours,m2);
     return float(contourArea(contours))/contourArea(m2);
+
+}
+
+
+Mat Analyse::train(string s){
+
+
+
+
+    std::string path1 = "D:/pro/Weapon chaos/BDD";
+    string png = ".png";
+    string p1 = "/apple/apple_";
+    string p2 = "/ball/ball_";
+    string p3 = "/banana/banana_";
+    string p4 = "/bottle/bottle_";
+    string p5 = "/broom/broom_";
+    string p6 = "/car/car_";
+    string p7 = "/cat/cat_";
+    string p8 = "/flute/flute_";
+    string p9 = "/fork/fork_";
+    string p10 = "/glasses/glasses_";
+    string p11= "/glue/glue_";
+    string p12 = "/hammer/hammer_";
+    string p13= "/key/key_";
+    string p14 = "/knife/knife_";
+    string p15 = "/mouse/mouse_";
+    string p16 = "/pillow/pillow_";
+    string p17 = "/plate/plate_";
+    string p18 = "/potato/potato_";
+    string p19 = "/racket/racket_";
+    string p20= "/screwdriver/screwdriver_";
+
+    for (int j= 1 ; j<21 ; j++){
+        for(int i = 1 ; i <=15; i++){
+
+            string name;
+            if(j==1){
+                name = path1+p1+std::to_string(i)+png;}
+            else if(j==2){
+                name = path1+p2+std::to_string(i)+png;
+            }
+            else if(j==3){
+                name = path1+p3+std::to_string(i)+png;
+            }
+            else if(j==4){
+                name = path1+p4+std::to_string(i)+png;
+            }
+            else if(j==5){
+                name = path1+p5+std::to_string(i)+png;
+            }
+            else if(j==6){
+                name = path1+p6+std::to_string(i)+png;
+            }
+            else if(j==7){
+                name = path1+p7+std::to_string(i)+png;
+            }
+            else if(j==8){
+                name = path1+p8+std::to_string(i)+png;
+            }
+            else if(j==9){
+                name = path1+p9+std::to_string(i)+png;
+            }
+            else if(j==10){
+                name = path1+p10+std::to_string(i)+png;
+            }
+            else if(j==11){
+                name = path1+p11+std::to_string(i)+png;
+            }
+            else if(j==12){
+                name = path1+p12+std::to_string(i)+png;
+            }
+            else if(j==13){
+                name = path1+p13+std::to_string(i)+png;
+            }
+            else if(j==14){
+                name = path1+p14+std::to_string(i)+png;
+            }
+            else if(j==15){
+                name = path1+p15+std::to_string(i)+png;
+            }
+            else if(j==16){
+                name = path1+p16+std::to_string(i)+png;
+            }
+            else if(j==17){
+                name = path1+p17+std::to_string(i)+png;
+            }
+            else if(j==18){
+                name = path1+p18+std::to_string(i)+png;
+            }
+            else if(j==19){
+                name = path1+p19+std::to_string(i)+png;
+            }
+            else {
+                name = path1+p20+std::to_string(i)+png;
+            }
+            cv::Mat m = getImage(name);
+            cv::Mat mask;
+            mask=extract(m);
+
+            vector<float> v;
+            vector<float> v2;
+            if(s=="hsv"){
+                v = hog(mask,"hsv");
+                v2 = lbp(mask,"hsv");
+            }
+            else{
+                v = hog(mask,"bgr");
+                v2 = lbp(mask,"bgr");
+            }
+
+            float ecce = eccentricity(mask);
+            float conv = convex(mask);
+
+            vector<float> data = vector<float>(267,0);
+            data[0]=ecce;
+            data[1]=conv;
+            for(int i = 0;i<9;i++){
+                data[2+i]=v[i];
+            }
+            for(int j = 0;j<256;j++){
+                data[11+j]=v2[j];
+            }
+
+        }
+    }
+
+
+
 
 }

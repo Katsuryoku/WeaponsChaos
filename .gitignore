@@ -21,3 +21,8 @@ Release
 *.vbproj.user
 ipch
 *sdf
+*.db-shm
+.vs/WeaponsOfChaos/v15/Browse.VC.opendb
+.vs/WeaponsOfChaos/v15/Solution.VC.db-wal
+.vs/WeaponsOfChaos/v15/Browse.VC.db
+.vs/WeaponsOfChaos/v15/Browse.VC.db

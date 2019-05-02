@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Weapons2", "Weapons2\Weapon
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaponsOfChaos", "WeaponsOfChaos\WeaponsOfChaos.vcxproj", "{499478CA-345E-49B8-A43B-C53CDA8E6788}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCV", "OpenCV\OpenCV.vcxproj", "{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{499478CA-345E-49B8-A43B-C53CDA8E6788}.Release|x64.Build.0 = Release|x64
 		{499478CA-345E-49B8-A43B-C53CDA8E6788}.Release|x86.ActiveCfg = Release|Win32
 		{499478CA-345E-49B8-A43B-C53CDA8E6788}.Release|x86.Build.0 = Release|Win32
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Debug|x64.ActiveCfg = Debug|x64
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Debug|x64.Build.0 = Debug|x64
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Debug|x86.ActiveCfg = Debug|Win32
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Debug|x86.Build.0 = Debug|Win32
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Release|x64.ActiveCfg = Release|x64
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Release|x64.Build.0 = Release|x64
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Release|x86.ActiveCfg = Release|Win32
+		{5D7B96E6-9F0C-4FEA-ACFF-CDBF154374D9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

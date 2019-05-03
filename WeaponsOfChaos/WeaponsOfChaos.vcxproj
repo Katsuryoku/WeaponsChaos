@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC ;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SFML64\include\SFML;D:\SFML64\include\SFML\System;D:\SFML64\include;C:\Users\Etienne\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SFML64\include\SFML;D:\SFML64\include\SFML\Audio;D:\SFML64\include\SFML\Window;D:\SFML64\include\SFML\Graphics;D:\SFML64\include\SFML\System;D:\SFML64\include;C:\Users\Etienne\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,21 +159,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Chest.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Nature.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="shop.h" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponsOfChaos.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Chest.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Nature.cpp" />
+    <ClCompile Include="shop.cpp" />
+    <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponsOfChaos.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +204,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="WeaponsOfChaos.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

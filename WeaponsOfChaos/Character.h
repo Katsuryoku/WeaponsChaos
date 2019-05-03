@@ -8,8 +8,6 @@ private:
 	int specialEffect;//TODO Enum
 	int maxLife;
 	int strength;
-	int range;
-	float attackAngle;
 public:
 	int attack();
 	int jump();

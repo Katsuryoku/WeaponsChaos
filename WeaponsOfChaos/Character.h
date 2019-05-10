@@ -11,7 +11,9 @@ private:
 	int strength;
 	sf::Image image;
 	sf::Sprite sprite;
+	void setPos(sf::Vector2f newPos);
 public:
+	void drawTo(sf::RenderWindow &window);
 	int attack();
 	int jump();
 	bool moveleft();

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "Character.h"
 
 int main() {
 	sf::RenderWindow window;
@@ -15,7 +16,8 @@ int main() {
 	window.create(sf::VideoMode(900, 900), "SFML Gravity", sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(centerWindow);
 
-	window.setKeyRepeatEnabled(true);
+	Character player = Character();
+	player.setPos({ 300, 300 });
 
 	//Score Objects:
 
@@ -25,9 +27,12 @@ int main() {
 	std::ostringstream ssScore;
 	ssScore << "Score: " << score;
 
+	sf::Font arial;
+	arial.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/arial.ttf");
 	sf::Text lblScore;
 	lblScore.setCharacterSize(30);
-	lblScore.setPosition({ 10, 10 });
+	lblScore.setPosition({ 300, 300 });
+	lblScore.setFont(arial);
 	lblScore.setString(ssScore.str());
 
 	//Gravity Variables:
@@ -38,10 +43,11 @@ int main() {
 	//Main Loop:
 	while (window.isOpen()) {
 
-		sf::Event Event;
+//		sf::Event Event;
 
 		window.clear();
 		window.draw(lblScore);
+		player.drawTo(window);
 		window.display();
 	}
 }

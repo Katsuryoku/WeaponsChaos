@@ -5,6 +5,8 @@ class Shop
 {
 private :
 	sf::RectangleShape shop;
+	sf::Image image;
+	sf::Sprite sprite;
 public:
 	void refresh();
 	void choseItem();

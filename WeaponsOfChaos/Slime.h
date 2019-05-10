@@ -4,6 +4,8 @@
 class Slime :
 	public Monster
 {
+private :
+	sf::Image slimeImage;
 public:
 	Slime();
 	~Slime();

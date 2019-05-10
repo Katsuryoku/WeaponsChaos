@@ -2,7 +2,13 @@
 #include "Character.h"
 
 
-Character::Character()
+int Character::getY()
+{
+		return sprite.getPosition().y;
+
+}
+
+Character::Character(sf::Vector2f scale)
 {
 	if (!image.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/test.png") )// Si le chargement du fichier a échoué
 	{
@@ -12,6 +18,7 @@ Character::Character()
 	{
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
+		sprite.setScale(scale);
 	}
 
 }
@@ -26,6 +33,11 @@ void Character::setPos(sf::Vector2f newPos)
 	sprite.setPosition(newPos);
 }
 
+void Character::move(sf::Vector2f distance)
+{
+	sprite.move(distance);
+}
+
 void Character::drawTo(sf::RenderWindow & window)
 {
 	window.draw(sprite);
@@ -36,19 +48,37 @@ int Character::attack()
 	return 0;
 }
 
-int Character::jump()
+void Character::jump()
 {
-	return 0;
+	move({ 0, -moveSpeed });
+	isJumping = true;
 }
 
-bool Character::moveleft()
+void Character::moveLeft()
 {
-	return false;
+	move({ -moveSpeed, 0 });
 }
 
-bool Character::moveRight()
+void Character::moveRight()
 {
-	return false;
+	move({ moveSpeed, 0 });
+}
+
+void Character::jumpLeft()
+{
+	move({ -moveSpeed, -moveSpeed });
+	isJumping = true;
+}
+
+void Character::jumpRight()
+{
+	move({ moveSpeed, -moveSpeed });
+	isJumping = true;
+}
+
+void Character::moveGravity(float gravitySpeed)
+{
+	move({ 0,gravitySpeed });
 }
 
 bool Character::changeWeapon()

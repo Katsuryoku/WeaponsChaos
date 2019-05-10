@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include "Character.h"
+#include "Monster.h"
 
 int main() {
 	sf::RenderWindow window;
@@ -16,8 +17,9 @@ int main() {
 	window.create(sf::VideoMode(900, 900), "SFML Gravity", sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(centerWindow);
 
-	Character player = Character();
-	player.setPos({ 300, 300 });
+	Character player = Character(sf::Vector2f(1.0f, 1.0f));
+	player.setPos({ 50.0f, 700.0f });
+	Monster slime = Monster({600.0f, 700.0f }, { 1.0f, 1.0f });
 
 	//Score Objects:
 
@@ -35,19 +37,55 @@ int main() {
 	lblScore.setFont(arial);
 	lblScore.setString(ssScore.str());
 
+	window.setKeyRepeatEnabled(true);
 	//Gravity Variables:
 	const int groundHeight = 700;
 	const float gravitySpeed = 0.3;
-	bool isJumping = false;
 
 	//Main Loop:
 	while (window.isOpen()) {
 
-//		sf::Event Event;
+		sf::Event Event;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			player.jumpRight();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			player.jumpLeft();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			player.jump();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			player.moveRight();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			player.moveLeft();
+		}
 
+		//Event Loop:
+		while (window.pollEvent(Event)) {
+			switch (Event.type) {
+
+			case sf::Event::Closed:
+				window.close();
+
+			case sf::Event::KeyReleased:
+				player.setIsJumping( false);
+			}
+		}
+
+		//Gravity Logic:
+		if (player.getY() < groundHeight && player.getIsJumping() == false) {
+			player.moveGravity(gravitySpeed);
+			slime.moveToPlayer(player.getPos());
+		}
+		else {
+			slime.moveToPlayerX(player.getPos());
+		}
 		window.clear();
 		window.draw(lblScore);
 		player.drawTo(window);
+		slime.drawTo(window);
 		window.display();
 	}
 }

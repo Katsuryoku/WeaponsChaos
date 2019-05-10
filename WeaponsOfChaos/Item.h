@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
+#include <SFML\Graphics.hpp>
 class Item
 {
 private :
+	sf::Image image;
+	sf::Sprite sprite;
 	int price;
 	int name;
 	std::string description;

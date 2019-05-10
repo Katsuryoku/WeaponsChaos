@@ -2,6 +2,7 @@
 #include <Vector2.hpp>
 #include "Nature.h"
 #include "State.h"
+#include <SFML\Graphics.hpp>
 class Monster
 {
 private :
@@ -12,6 +13,8 @@ private :
 	int maxLife;
 	int strength;
 	Nature nature;
+	sf::Image image;
+	sf::Sprite sprite;
 public:
 	int attack();
 	bool moveleft();

@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML\Graphics.hpp>
 class Character
 {
 private:
@@ -8,6 +9,8 @@ private:
 	int specialEffect;//TODO Enum
 	int maxLife;
 	int strength;
+	sf::Image image;
+	sf::Sprite sprite;
 public:
 	int attack();
 	int jump();

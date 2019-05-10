@@ -6,8 +6,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <sstream>
-/*
-int dodo() {
+
+int main() {
 	sf::RenderWindow window;
 
 	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
@@ -21,8 +21,6 @@ int dodo() {
 
 	int score = 0;
 
-	sf::Font arial;
-	arial.loadFromFile("arial.ttf");
 
 	std::ostringstream ssScore;
 	ssScore << "Score: " << score;
@@ -30,7 +28,6 @@ int dodo() {
 	sf::Text lblScore;
 	lblScore.setCharacterSize(30);
 	lblScore.setPosition({ 10, 10 });
-	lblScore.setFont(arial);
 	lblScore.setString(ssScore.str());
 
 	//Gravity Variables:

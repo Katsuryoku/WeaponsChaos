@@ -3,7 +3,52 @@
 
 #include "stdafx.h"
 #include "WeaponsOfChaos.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <sstream>
+/*
+int dodo() {
+	sf::RenderWindow window;
 
+	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
+
+	window.create(sf::VideoMode(900, 900), "SFML Gravity", sf::Style::Titlebar | sf::Style::Close);
+	window.setPosition(centerWindow);
+
+	window.setKeyRepeatEnabled(true);
+
+	//Score Objects:
+
+	int score = 0;
+
+	sf::Font arial;
+	arial.loadFromFile("arial.ttf");
+
+	std::ostringstream ssScore;
+	ssScore << "Score: " << score;
+
+	sf::Text lblScore;
+	lblScore.setCharacterSize(30);
+	lblScore.setPosition({ 10, 10 });
+	lblScore.setFont(arial);
+	lblScore.setString(ssScore.str());
+
+	//Gravity Variables:
+	const int groundHeight = 700;
+	const float gravitySpeed = 0.3;
+	bool isJumping = false;
+
+	//Main Loop:
+	while (window.isOpen()) {
+
+		sf::Event Event;
+
+		window.clear();
+		window.draw(lblScore);
+		window.display();
+	}
+}
+/*
 #define MAX_LOADSTRING 100
 
 // Variables globales :
@@ -178,3 +223,4 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
+*/

@@ -1,12 +1,10 @@
 #pragma once
-
 #include <SFML\Graphics.hpp>
 class Shop
 {
 private :
-	sf::RectangleShape shop;
 	sf::Image image;
-	sf::Sprite sprite;
+	sf::Sprite shop;
 public:
 	void refresh();
 	void choseItem();

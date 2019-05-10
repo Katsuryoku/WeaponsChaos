@@ -1,4 +1,5 @@
-#include <SFML_PATH/Graphics.hpp>
+#include "stdafx.h"
+#include <SFML/Graphics.hpp>
 
 int main()
 {

@@ -34,7 +34,6 @@ void Shop::setPos(sf::Vector2f newPos)
 
 Shop::Shop(sf::Vector2f size)
 {
-	shop.setSize(size);
 }
 
 

@@ -1,8 +1,7 @@
 #pragma once
-#include <Vector2.hpp>
+#include <SFML\Graphics.hpp>
 #include "Nature.h"
 #include "State.h"
-#include <SFML\Graphics.hpp>
 class Monster
 {
 private :
@@ -21,7 +20,7 @@ public:
 	bool moveRight();
 	bool generate();
 	bool loselife(int life);
-	Monster(sf::Vector2f pos, int lvl, int sE, int mL, int s);
+	Monster(sf::Vector2f pos, int lvl, Nature nat, int mL, int s);
 	Monster();
 	~Monster();
 };

@@ -33,12 +33,12 @@ bool Monster::loselife(int life)
 	}
 }
 
-Monster::Monster(sf::Vector2f pos, int lvl, int sE, int mL, int s)
+Monster::Monster(sf::Vector2f pos, int lvl, Nature nat, int mL, int s)
 {
 	position = pos;
 	level = lvl;
 	currentLife = mL;
-	specialEffect = sE;
+	nature = nat;
 	maxLife = mL;
 	strength = s;
 }
@@ -48,7 +48,6 @@ Monster::Monster()
 	position = sf::Vector2f(0,0);
 	level = 1;
 	currentLife = 10;
-	specialEffect = 0;
 	maxLife = 10;
 	strength = 1;
 }

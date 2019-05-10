@@ -110,7 +110,7 @@
       <AdditionalIncludeDirectories>D:\SFML64\include\SFML;D:\SFML64\include\SFML\Audio;D:\SFML64\include\SFML\Window;D:\SFML64\include\SFML\Graphics;D:\SFML64\include\SFML\System;D:\SFML64\include;C:\Users\Etienne\SFML-2.5.1\include;C:\Users\Etienne\SFML-2.5.1\include\SFML;C:\Users\Etienne\SFML-2.5.1\include\SFML\Audio;C:\Users\Etienne\SFML-2.5.1\include\SFML\Graphics;C:\Users\Etienne\SFML-2.5.1\include\SFML\System;C:\Users\Etienne\SFML-2.5.1\include\SFML\Window</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>D:\SFML64\lib;C:\Users\Etienne\SFML-2.5.1\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;flac.lib;openal32.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-audio-s-d.lib	;sfml-window-s-d.lib	;sfml-graphics-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>

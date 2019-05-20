@@ -3,6 +3,8 @@
 #include <array> 
 #include "Monster.h"
 #include "Coin.h"
+#include "Ground.h"
+
 class Level
 {
 private:
@@ -17,8 +19,11 @@ private:
 	std::string description;
 	Monster MonstersArray[1] = {};
 	Coin CoinsArray[1] = {};
+	Ground* ground;
 public:
 	Level();
 	~Level();
+	void drawTo(sf::RenderWindow &window);
+	void generateCoins();
 };
 

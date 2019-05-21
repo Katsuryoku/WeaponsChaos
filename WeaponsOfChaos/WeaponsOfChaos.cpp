@@ -9,7 +9,7 @@
 #include "Character.h"
 #include "Monster.h"
 
-int main() {
+int dodo() {
 	sf::RenderWindow window;
 
 	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
@@ -88,6 +88,8 @@ int main() {
 		slime.drawTo(window);
 		window.display();
 	}
+
+	return 0;
 }
 /*
 #define MAX_LOADSTRING 100

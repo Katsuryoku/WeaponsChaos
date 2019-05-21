@@ -1,6 +1,6 @@
 #pragma once
 #include <Vector2.hpp>
-
+#include "Ground.h"
 #include <SFML\Graphics.hpp>
 class Coin
 {
@@ -10,7 +10,8 @@ private :
 	sf::Sprite sprite;
 	int value;
 public:
-	Coin();
+	Coin(Ground* ground);
 	~Coin();
+	void drawTo(sf::RenderWindow &window);
 };
 

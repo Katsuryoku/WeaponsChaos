@@ -4,7 +4,11 @@
 #include <iostream>
 #include "Menu.h"
 #include "Character.h"
-
+#include "ScreenVideo.h"
+#include <opencv2/opencv.hpp>
+#include "opencv2/core/core_c.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/ml/ml.hpp"
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(900, 900), "SFML WORK!");

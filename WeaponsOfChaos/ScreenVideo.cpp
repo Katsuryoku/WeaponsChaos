@@ -6,7 +6,7 @@ Mat ScreenVideo::launchVideo()
 {
 	if (!cap.isOpened())
 	{
-		return 0;
+		return;
 	}
 	cv::Mat rend;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "RenderWindow");

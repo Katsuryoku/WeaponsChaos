@@ -1,58 +1,65 @@
 #include "stdafx.h"
 #include "ScreenVideo.h"
+#include <iostream>
 
-
-Mat ScreenVideo::launchVideo()
+bool ScreenVideo::takeVideo()
 {
 	if (!cap.isOpened())
 	{
-		return Mat(cv::Size(1,1),1);
+		cap= VideoCapture(0);
 	}
-	cv::Mat rend;
-	sf::RenderWindow window(sf::VideoMode(1200, 900), "RenderWindow");
-	cv::Mat frameRGB, frameRGBA;
-	sf::Image image;
-	sf::Texture texture;
-	sf::Event event;
-	sf::Sprite sprite;
+	cap >> frameRGB;
+	if (frameRGB.empty())
+		{
+			std::cout << "cap empty";
+			return false;
+		}
+	if (zone) {
+		int W, H;
+		Point p1, p2;
+		if (frameRGB.cols < 3 * frameRGB.rows) {
+			W = frameRGB.cols / 3;
+			H = frameRGB.cols / 3;
+		}
+		if (isZoneRight) {
+			p1 = Point(frameRGB.cols - W - 10, 10);
+			p2 = Point(frameRGB.cols - 10, 10 + H);
+		}
+		else {
+			p1 = Point(10, 10);
+			p2 = Point(10 + W, 10 + H);
+		}
 
-	while (window.isOpen())
+		frame = frameRGB(Range(p1.y, p2.y), Range(p1.x, p2.x));
+	}
+	else {
+		frame = frameRGB;
+	}
+	cv::cvtColor(frame, frameRGBA, cv::COLOR_BGR2RGBA);
+	
+
+	image.create(frameRGBA.cols, frameRGBA.rows, frameRGBA.ptr());
+
+	if (!texture.loadFromImage(image))
 	{
-		cap >> frameRGB;
-
-		if (frameRGB.empty())
-		{
-			break;
-		}
-
-		cv::cvtColor(frameRGB, frameRGBA, cv::COLOR_BGR2RGBA);
-
-		image.create(frameRGBA.cols, frameRGBA.rows, frameRGBA.ptr());
-
-		if (!texture.loadFromImage(image))
-		{
-			break;
-		}
-
-		sprite.setTexture(texture);
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == sf::Keyboard::Escape) {
-					rend = Mat(cv::Size(1, 1), 1);
-				}
-			}
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.draw(sprite);
-		window.display();
+		std::cout << "image crash";
+		return false;
 	}
-	return Mat();
-}
 
+	sprite.setTexture(texture);
+	}
+void ScreenVideo::drawTo(sf::RenderWindow & window)
+{
+	window.draw(sprite);
+}
+Mat ScreenVideo::captureImage() {
+	return frame;
+}
+void ScreenVideo::closeCam() {
+	cap.release();
+	zone = false;
+	isZoneRight = false;
+}
 ScreenVideo::ScreenVideo()
 {
 	

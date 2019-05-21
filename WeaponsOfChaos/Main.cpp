@@ -17,6 +17,7 @@ int main()
 	Menu menu(window.getSize().x, window.getSize().y,5);
 
 	Character playr(sf::Vector2f(1.0f, 1.0f));
+	ScreenVideo screenVid = ScreenVideo();
 	const int groundHeight = 700;
 	const float gravitySpeed = 0.3;
 	bool game = false;
@@ -51,11 +52,16 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::N:
-					if(game)
-						
+					if (screenVid.getIsScreen()) {
+						cv::imshow("screen", screenVid.captureImage());
+					};
+					break;
+
 				case sf::Keyboard::Up:
 					if(menu.getInMenu())
 						menu.MoveUp();
+					if (screenVid.getIsScreen())
+						screenVid.setIsZoneRight(true);
 					break;
 				case sf::Event::KeyReleased:
 					if (game)
@@ -64,12 +70,16 @@ int main()
 				case sf::Keyboard::Down:
 					if (menu.getInMenu())
 						menu.MoveDown();
+					if (screenVid.getIsScreen())
+						screenVid.setIsZoneRight(false);
 					break;
 				case sf::Keyboard::Escape:
 					if (!menu.getInMenu())
 					{
 						menu.setInMenu(true);
 						game = false;
+						screenVid.setIsScreen(false);
+						screenVid.closeCam();
 					};
 					break;
 				case sf::Keyboard::Return:
@@ -83,12 +93,14 @@ int main()
 							break;
 						case 1:
 							std::cout << "Charge weapon button has been pressed" << std::endl;
-							chargeWindow = true;
+							screenVid.setIsScreen(true);
 							menu.setInMenu(false);
 							break;
 						case 2:
 							std::cout << "Change nature button has been pressed" << std::endl;
 							natureWindow = true;
+							screenVid.setZone(true);
+							screenVid.setIsScreen(true);
 							menu.setInMenu(false);
 							break;
 						case 3:
@@ -124,14 +136,13 @@ int main()
 			}
 			playr.drawTo(window);
 		}
-		if (natureWindow) {
-			ScreenVideo screenVid = ScreenVideo();
-			//screenVid.getImage();
+		if (screenVid.getIsScreen()) {
+			screenVid.takeVideo();
+			screenVid.drawTo(window);
 		}
 		window.display();
 
-		cv::Mat mask2 = cv::imread("test.png");
-
-		cv::imshow("Display window", mask2);
+		//cv::Mat mask2 = cv::imread("test.png");
+		//cv::imshow("Display window", mask2);
 	}
 }

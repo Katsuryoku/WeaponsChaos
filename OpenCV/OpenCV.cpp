@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	
 	
 	ifstream fichier;
-	fichier.open("test.txt", ios::in);
+	fichier.open("test2.txt", ios::in);
 	Mat data = b.getData("", fichier);
 	
 	fichier.close();
@@ -85,10 +85,26 @@ int main(int argc, char** argv)
 		add = add/(20*15) ;
 
 
-	vector<vector<int>> confusion(20, vector<int>(20, 1));
-	
+	vector<vector<int>> confusion(20, vector<int>(20, 0));
+	for (int i = 0; i < 20; i++) {
+		confusion[i][sol1[i]]++;
+		confusion[i][sol2[i]]++;
+		confusion[i][sol3[i]]++;
+		confusion[i][sol4[i]]++;
+		confusion[i][sol5[i]]++;
+		confusion[i][sol6[i]]++;
+		confusion[i][sol7[i]]++;
+		confusion[i][sol8[i]]++;
+		confusion[i][sol9[i]]++;
+		confusion[i][sol10[i]]++;
+		confusion[i][sol11[i]]++;
+		confusion[i][sol12[i]]++;
+		confusion[i][sol13[i]]++;
+		confusion[i][sol14[i]]++;
+		confusion[i][sol15[i]]++;
+	}
 
-
+	confusion;
 	string name = "D:/pro/Weapons chaos/test_screwdriver_2.png";
 	cv::Mat m1 = b.getImage(name);
 	int sol = b.giveClass1("",name, data);

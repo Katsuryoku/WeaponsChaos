@@ -34,6 +34,7 @@ public:
 	Mat extract(Mat m);
 	//void classer();
 	//void calculCarac();
+	int getColorType(Mat);
 	int giveClass2(string s,Mat e, Mat m);
 	int giveClass1(string s,string name,Mat m);
 	vector<int> giveClass(string s2,int z,Mat m);

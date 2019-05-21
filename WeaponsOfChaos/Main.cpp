@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include "Menu.h"
+#include "Character.h"
 
 int main()
 {
@@ -10,6 +11,11 @@ int main()
 
 	Menu menu(window.getSize().x, window.getSize().y,5);
 
+	Character playr(sf::Vector2f(1.0f, 1.0f));
+	bool game = false;
+	bool chargeWindow = false;
+	bool natureWindow = false;
+	bool optionWindow = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -22,32 +28,47 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::Up:
-					menu.MoveUp();
+					if(menu.getInMenu())
+						menu.MoveUp();
 					break;
 
 				case sf::Keyboard::Down:
-					menu.MoveDown();
+					if (menu.getInMenu())
+						menu.MoveDown();
 					break;
 
+				case sf::Keyboard::Escape:
+					if (!menu.getInMenu())
+						menu.setInMenu(true);
+					break;
 				case sf::Keyboard::Return:
-					switch (menu.GetPressedItem())
-					{
-					case 0:
-						std::cout << "Play button has been pressed" << std::endl;
-						break;
-					case 1:
-						std::cout << "Charge weapon button has been pressed" << std::endl;
-						break;
-					case 2:
-						std::cout << "Change nature button has been pressed" << std::endl;
-						break;
-					case 3:
-						std::cout << "Option button has been pressed" << std::endl;
-						break;
-					case 4:
-						window.close();
-						break;
-					}
+					if (menu.getInMenu())
+						switch (menu.GetPressedItem())
+						{
+						case 0:
+							std::cout << "Play button has been pressed" << std::endl;
+							game = true;
+							menu.setInMenu(false);
+							break;
+						case 1:
+							std::cout << "Charge weapon button has been pressed" << std::endl;
+							chargeWindow = true;
+							menu.setInMenu(false);
+							break;
+						case 2:
+							std::cout << "Change nature button has been pressed" << std::endl;
+							natureWindow = true;
+							menu.setInMenu(false);
+							break;
+						case 3:
+							std::cout << "Option button has been pressed" << std::endl;
+							optionWindow = true;
+							menu.setInMenu(false);
+							break;
+						case 4:
+							window.close();
+							break;
+						}
 
 					break;
 				}
@@ -63,7 +84,8 @@ int main()
 
 		window.clear();
 
-		menu.draw(window);
+		if (menu.getInMenu())
+			menu.draw(window);
 
 		window.display();
 	}

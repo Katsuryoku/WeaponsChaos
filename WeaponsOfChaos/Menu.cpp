@@ -3,8 +3,7 @@
 
 Menu::Menu(float width, float height, int maxNumberItems)
 {
-	if (!
-		font.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/arial.ttf"))
+	if (!font.loadFromFile("arial.ttf"))
 	{
 		// handle error
 	}

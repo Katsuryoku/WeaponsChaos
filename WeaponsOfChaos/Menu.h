@@ -14,11 +14,12 @@ public:
 	void MoveUp();
 	void MoveDown();
 	int GetPressedItem() { return selectedItemIndex; }
-
+	bool getInMenu() { return inMenu; }
+	void setInMenu(bool menu) { inMenu = menu; }
 private:
 	int selectedItemIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
-
+	bool inMenu = true;
 };
 

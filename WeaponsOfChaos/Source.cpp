@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Level.h"
 
-int main()
+int dede()
 {
 	sf::RenderWindow window(sf::VideoMode(900, 900), "SFML works!");
 

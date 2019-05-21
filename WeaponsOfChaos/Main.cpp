@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Menu.h"
 #include "Character.h"
+#include "ScreenVideo.h"
 
 int main()
 {
@@ -118,6 +119,10 @@ int main()
 				playr.moveGravity(gravitySpeed);
 			}
 			playr.drawTo(window);
+		}
+		if (natureWindow) {
+			ScreenVideo screenVid = ScreenVideo();
+			screenVid.getImage()
 		}
 		window.display();
 	}

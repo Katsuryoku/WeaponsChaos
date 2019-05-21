@@ -6,6 +6,8 @@ using namespace cv;
 
 class ScreenVideo
 {
+	VideoCapture cap(0);
+	Mat launchVideo();
 public:
 	ScreenVideo();
 	~ScreenVideo();

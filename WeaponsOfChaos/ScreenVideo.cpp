@@ -2,14 +2,13 @@
 #include "ScreenVideo.h"
 
 
-ScreenVideo::ScreenVideo()
+Mat ScreenVideo::launchVideo()
 {
-	cv::VideoCapture cap(0); // open the video file for reading
 	if (!cap.isOpened())
 	{
 		return 0;
 	}
-
+	cv::Mat rend;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "RenderWindow");
 	cv::Mat frameRGB, frameRGBA;
 	sf::Image image;
@@ -39,6 +38,11 @@ ScreenVideo::ScreenVideo()
 
 		while (window.pollEvent(event))
 		{
+			if (event.type == sf::Event::KeyPressed) {
+				if (event.key.code == sf::Keyboard::Escape) {
+					rend = 
+				}
+			}
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
@@ -46,7 +50,15 @@ ScreenVideo::ScreenVideo()
 		window.draw(sprite);
 		window.display();
 	}
+	return Mat();
 }
+
+ScreenVideo::ScreenVideo()
+{
+	
+}
+
+
 
 
 ScreenVideo::~ScreenVideo()

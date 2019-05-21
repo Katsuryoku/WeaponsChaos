@@ -107,12 +107,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_STATIC ;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SFML64\include\SFML;D:\SFML64\include\SFML\Audio;D:\SFML64\include\SFML\Window;D:\SFML64\include\SFML\Graphics;D:\SFML64\include\SFML\System;D:\SFML64\include;C:\Users\Etienne\SFML-2.5.1\include;C:\Users\Etienne\SFML-2.5.1\include\SFML;C:\Users\Etienne\SFML-2.5.1\include\SFML\Audio;C:\Users\Etienne\SFML-2.5.1\include\SFML\Graphics;C:\Users\Etienne\SFML-2.5.1\include\SFML\System;C:\Users\Etienne\SFML-2.5.1\include\SFML\Window</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SFML64\include\SFML;D:\SFML64\include\SFML\Audio;D:\SFML64\include\SFML\Window;D:\SFML64\include\SFML\Graphics;D:\SFML64\include\SFML\System;D:\SFML64\include;C:\Users\Etienne\SFML-2.5.1\include;C:\Users\Etienne\SFML-2.5.1\include\SFML;C:\Users\Etienne\SFML-2.5.1\include\SFML\Audio;C:\Users\Etienne\SFML-2.5.1\include\SFML\Graphics;C:\Users\Etienne\SFML-2.5.1\include\SFML\System;C:\Users\Etienne\SFML-2.5.1\include\SFML\Window;C:\Users\Etienne\Opencv4\opencv\build\include\opencv2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SFML64\lib;C:\Users\Etienne\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SFML64\lib;C:\Users\Etienne\SFML-2.5.1\lib;C:\Users\Etienne\Opencv4\opencv\build\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;flac.lib;openal32.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-audio-s-d.lib	;sfml-window-s-d.lib	;sfml-graphics-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -171,6 +171,7 @@
     <ClInclude Include="Nature.h" />
     <ClInclude Include="Plateform.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScreenVideo.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="State.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Nature.cpp" />
     <ClCompile Include="Plateform.cpp" />
+    <ClCompile Include="ScreenVideo.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Source.cpp" />

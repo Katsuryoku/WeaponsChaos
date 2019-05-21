@@ -665,3 +665,192 @@ int Analyse::giveClass2(string s,Mat e, Mat m) {
 
 
 }
+
+
+
+
+int Analyse::getColorType(Mat image){
+
+	Mat centerBGR = image(Range((int)(image.cols / 2) - 8, (int)(image.cols / 2) + 7), Range((int)(image.rows / 2) - 8, (int)(image.rows / 2) + 7));
+	//Mat centerHSV;
+	//Mat centerHLS;
+	//cvtColor(centerBGR, centerHSV, COLOR_BGR2HSV);
+	//cvtColor(centerBGR, centerHLS, COLOR_BGR2HLS);
+	Scalar meansBGR = mean(centerBGR);
+	//Scalar meansHSV = mean(centerHSV);
+	//Scalar meansHLS = mean(centerHLS);
+
+	//float data[9] = { (float)meansBGR[2], (float)meansBGR[1],(float)meansBGR[0], (float)meansHSV[0], (float)meansHSV[1], (float)meansHSV[2], (float)meansHLS[0], (float)meansHLS[2], (float)meansHLS[1] };
+
+	// Means of red, green, blue
+	float data[3] = { (float)meansBGR[2], (float)meansBGR[1],(float)meansBGR[0] };
+
+	
+
+	// RGB Tests
+	if (abs((max(max(data[0], data[1]), data[2])) - (min(min(data[0], data[1]), data[2]))) < 50) {
+		// Color is close to a shade of gray
+		if ((data[0] + data[1] + data[2]) / 3 < 145) {
+			//### BLACK
+			return 5;//shadow
+			//cout << "(RGB) Weapon type : Shadow\n";
+		}
+		else {
+			//### WHITE
+			return 4;//light
+			//cout << "(RGB) Weapon type : Light\n";
+		}
+	}
+	else {
+		// Color isn't close to a shade of gray : We can distinguish it thanks to its highest value between red, green and blue
+		if (data[0] > data[1]) {
+			if (data[2] > data[0]) {
+				//### BLUE
+				return 2;//water
+				//cout << "(RGB) Weapon type : Water\n";
+			}
+			else {
+				//### RED
+				return 1;//fire
+				//cout << "(RGB) Weapon type : Fire\n";
+			}
+		}
+		else {
+			if (data[1] > data[2]) {
+				//### GREEN
+				return 3;//grass
+				//cout << "(RGB) Weapon type : Grass\n";
+			}
+			else {
+				//### BLUE
+				return 2;//water
+				//cout << "(RGB) Weapon type : Water\n";
+			}
+		}
+	}
+
+	/*
+	// HSV Tests
+	if (data[5] < 25) {
+		// Having a very low Value always makes the color black
+		// ### BLACK
+		//return Shadow;
+		cout << "(HSV) Weapon type : Shadow\n";
+	}
+	else {
+		if (data[4] < 70) {
+			// Having a low Saturation means its either dark or light
+			if (data[5] < 128) {
+				// ### BLACK
+				//return Shadow;
+				cout << "(HSV) Weapon type : Shadow\n";
+			}
+			else {
+				// ### WHITE
+				//return Light;
+				cout << "(HSV) Weapon type : Light\n";
+			}
+		}
+		else {
+			// It may now be considered as a common color : either red, green or blue
+			if (data[3] >= 120 && data[3] < 210) {
+				//### BLUE
+				//return Water
+				cout << "(HSV) Weapon type : Water\n";
+			}
+			else if (data[3] >= 45 && data[3] < 120) {
+				//### GREEN
+				//return Grass;
+				cout << "(HSV) Weapon type : Grass\n";
+			}
+			else {
+				//### RED
+				//return Fire;
+				cout << "(HSV) Weapon type : Fire\n";
+			}
+		}
+	}
+
+	// HSL Tests
+	if (data[7] < 40) {
+		// Having a low Saturation means its a shade of gray
+		if (data[8] < 128) {
+			// ### BLACK
+			//return Shadow;
+			cout << "(HSV) Weapon type : Shadow\n\n\n";
+		}
+		else {
+			// ### WHITE
+			//return Light;
+			cout << "(HSL) Weapon type : Light\n\n\n";
+		}
+	}
+	else {
+		// It is now either black if it has a very low Luminance, white if its high, or else, a common color.
+		if (data[8] < 20) {
+			// ### BLACK
+			//return Shadow;
+			cout << "(HSV) Weapon type : Shadow\n\n\n";
+		}
+		else if (data[8] > 200) {
+			// ### WHITE
+			//return Light;
+			cout << "(HSL) Weapon type : Light\n\n\n";
+		}
+		else {
+			// It may now be considered as a common color : either red, green or blue
+			if (data[6] >= 120 && data[6] < 210) {
+				//### BLUE
+				//return Water
+				cout << "(HSL) Weapon type : Water\n\n\n";
+			}
+			else if (data[6] >= 45 && data[6] < 120) {
+				//### GREEN
+				//return Grass;
+				cout << "(HSL) Weapon type : Grass\n\n\n";
+			}
+			else {
+				//### RED
+				//return Fire;
+				cout << "(HSL) Weapon type : Fire\n\n\n";
+			}
+		}
+	}
+
+
+	// RGB and HSV Tests
+	if (abs(data[0] - data[1]) < 40 && abs(data[0] - data[2]) < 40 && abs(data[1] - data[2]) < 40) {
+		// Color is close to a shade of gray
+		float grayMean = 0;
+		for (int c = 0; c < 3; c++) {
+			grayMean += data[c];
+		}
+		grayMean = grayMean / 3;
+		if (grayMean < 128) {
+			//### BLACK
+			return Shadow;
+		}
+		else {
+			//### WHITE
+			return Light;
+		}
+	}
+	else {
+		// Color isn't close to a shade of gray : We can distinguish it thanks to its Hue value
+		if (data[3] >= 120 && data[3] < 210) {
+			//### BLUE
+			return Water;
+		}
+		else if (data[3] >= 45 && data[3] < 120) {
+			//### GREEN
+			return Grass;
+		}
+		else {
+			//### RED
+			return Fire;
+		}
+	}
+	*/
+
+	return 0;
+}

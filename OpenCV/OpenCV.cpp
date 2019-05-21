@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	
 	
 	ifstream fichier;
-	fichier.open("test.txt", ios::in);
+	fichier.open("test2.txt", ios::in);
 	Mat data = b.getData("", fichier);
 	
 	fichier.close();
@@ -59,6 +59,7 @@ int main(int argc, char** argv)
 	vector<int> sol13 = b.giveClass("", 12, data);
 	vector<int> sol14 = b.giveClass("", 13, data);
 	vector<int> sol15 = b.giveClass("", 14, data);
+
 
 	float add = 0;
 	
@@ -84,16 +85,32 @@ int main(int argc, char** argv)
 		add = add/(20*15) ;
 
 
-	vector<vector<int>> confusion(20, vector<int>(20, 1));
-	
+	vector<vector<int>> confusion(20, vector<int>(20, 0));
+	for (int i = 0; i < 20; i++) {
+		confusion[i][sol1[i]]++;
+		confusion[i][sol2[i]]++;
+		confusion[i][sol3[i]]++;
+		confusion[i][sol4[i]]++;
+		confusion[i][sol5[i]]++;
+		confusion[i][sol6[i]]++;
+		confusion[i][sol7[i]]++;
+		confusion[i][sol8[i]]++;
+		confusion[i][sol9[i]]++;
+		confusion[i][sol10[i]]++;
+		confusion[i][sol11[i]]++;
+		confusion[i][sol12[i]]++;
+		confusion[i][sol13[i]]++;
+		confusion[i][sol14[i]]++;
+		confusion[i][sol15[i]]++;
+	}
 
-
-	string name = "screwdriver_2.png";
+	confusion;
+	string name = "D:/pro/Weapons chaos/test_screwdriver_2.png";
 	cv::Mat m1 = b.getImage(name);
 	int sol = b.giveClass1("",name, data);
 	int solbis = b.giveClass2("",m1,data);
 
-	cv::Mat m2 = b.getImage("screwdriver_2.png");
+	cv::Mat m2 = b.getImage("D:/pro/Weapons chaos/BDD/screwdriver/screwdriver_2.png");
 	//Canny(m,m,0,80);
 	cv::Mat mask2;
 	mask2 = b.extract(m2);

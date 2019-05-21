@@ -30,15 +30,31 @@ bool ScreenVideo::takeVideo()
 			p2 = Point(10 + W, 10 + H);
 		}
 
-		frame = frameRGB(Range(p1.y, p2.y), Range(p1.x, p2.x));
+		zoneFrame = frameRGB(Range(p1.y, p2.y), Range(p1.x, p2.x));
+		cv::cvtColor(zoneFrame, zoneFrameRGBA, cv::COLOR_BGR2RGBA);
+		zoneImage.create(zoneFrameRGBA.cols, zoneFrameRGBA.rows, zoneFrameRGBA.ptr());
+		if (!zoneTexture.loadFromImage(zoneImage))
+		{
+			std::cout << "image crash";
+			return false;
+		}
+
+		zoneSprite.setTexture(zoneTexture);
 	}
 	else {
 		frame = frameRGB;
+		cv::cvtColor(frame, frameRGBA, cv::COLOR_BGR2RGBA);
+		image.create(frameRGBA.cols, frameRGBA.rows, frameRGBA.ptr()); 
+		if (!texture.loadFromImage(image))
+		{
+			std::cout << "image crash";
+			return false;
+		}
+
+		sprite.setTexture(texture);
 	}
-	cv::cvtColor(frame, frameRGBA, cv::COLOR_BGR2RGBA);
 	
 
-	image.create(frameRGBA.cols, frameRGBA.rows, frameRGBA.ptr());
 
 	if (!texture.loadFromImage(image))
 	{
@@ -50,9 +66,16 @@ bool ScreenVideo::takeVideo()
 	}
 void ScreenVideo::drawTo(sf::RenderWindow & window)
 {
-	window.draw(sprite);
+	if (zone) {
+		window.draw(zoneSprite);
+	}
+	else {
+		window.draw(sprite);
+	}
 }
 Mat ScreenVideo::captureImage() {
+	if (zone)
+		return zoneFrame;
 	return frame;
 }
 void ScreenVideo::closeCam() {

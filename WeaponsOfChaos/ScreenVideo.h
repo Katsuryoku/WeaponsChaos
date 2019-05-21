@@ -12,9 +12,14 @@ private:
 	cv::Mat frameRGB;
 	cv::Mat frame;
 	sf::Sprite sprite;
+	sf::Sprite zoneSprite;
 	cv::Mat frameRGBA;
+	sf::Image zoneImage;
+	sf::Texture zoneTexture;
 	sf::Image image;
 	sf::Texture texture;
+	cv::Mat zoneFrame;
+	cv::Mat zoneFrameRGBA;
 	bool isZoneRight = false;
 	bool zone = false;
 public:

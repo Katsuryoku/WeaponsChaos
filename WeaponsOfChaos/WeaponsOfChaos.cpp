@@ -6,10 +6,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include <string>
 #include "Character.h"
 #include "Monster.h"
 
-int main() {
+int d() {
 	sf::RenderWindow window;
 
 	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
@@ -19,7 +20,7 @@ int main() {
 
 	Character player = Character(sf::Vector2f(1.0f, 1.0f));
 	player.setPos({ 50.0f, 700.0f });
-	Monster slime = Monster({600.0f, 700.0f }, { 1.0f, 1.0f });
+	Monster slime = Monster({300.0f, 350.0f }, { 1.0f, 1.0f });
 
 	//Score Objects:
 
@@ -73,14 +74,14 @@ int main() {
 				player.setIsJumping( false);
 			}
 		}
-
+		//std::string dodo = std::to_string(slime.getPosition().x)+ " ; " + std::to_string(slime.getPosition().y);
+		//std::cout<<dodo;
 		//Gravity Logic:
 		if (player.getY() < groundHeight && player.getIsJumping() == false) {
 			player.moveGravity(gravitySpeed);
-			slime.moveToPlayer(player.getPos());
 		}
 		else {
-			slime.moveToPlayerX(player.getPos());
+			slime.moveToPlayer(player.getPos());
 		}
 		window.clear();
 		window.draw(lblScore);
@@ -88,6 +89,7 @@ int main() {
 		slime.drawTo(window);
 		window.display();
 	}
+	return 1;
 }
 /*
 #define MAX_LOADSTRING 100

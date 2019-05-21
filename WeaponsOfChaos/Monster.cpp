@@ -51,19 +51,19 @@ void Monster::moveToPlayer(sf::Vector2f playerPosition)
 	float ay = playerPosition.y - sprite.getPosition().y;
 	float ax = playerPosition.x - sprite.getPosition().x;
 	// angle (in radians) between monster and player
-	float angle = atan2(ay, ax);
+	float angle = 0;
+	if (ay*ax < 0) {
+		angle = atan2(ay, ax);
+	}
+	else {
+		angle = atan2(ay,	ax);
+	}
 	// monster.speed is the amount of pixels to move
 	// If this doesn't work, invert cos for x and sin for y
 	
 	float monsterX = sin(angle) * moveSpeed;
 	float monsterY = cos(angle) * moveSpeed;
-	move({ monsterX, -monsterY });
-}
-void Monster::moveToPlayerX(sf::Vector2f playerPosition)
-{
-	float ax = playerPosition.x - sprite.getPosition().x;
-	float monsterX = ax * moveSpeed;
-	move({ monsterX, 0 });
+	move({ -monsterX, -monsterY });
 }
 
 bool Monster::generate()

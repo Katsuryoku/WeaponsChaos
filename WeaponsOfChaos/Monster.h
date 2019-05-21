@@ -27,7 +27,6 @@ public:
 	void jumpRight();
 	void jumpLeft();
 	void moveToPlayer(sf::Vector2f playerPosition);
-	void moveToPlayerX(sf::Vector2f playerPosition);
 	bool generate();
 	void setMoveSpeed(float mSpeed) { moveSpeed = mSpeed; };
 	sf::Vector2f getPosition() { return sprite.getPosition(); };

@@ -1,9 +1,14 @@
-
 #include "stdafx.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include "Menu.h"
 #include "Character.h"
+
+#include "ScreenVideo.h"
+#include <opencv2/opencv.hpp>
+#include "opencv2/core/core_c.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/ml/ml.hpp"
 
 int main()
 {
@@ -119,6 +124,15 @@ int main()
 			}
 			playr.drawTo(window);
 		}
+		if (natureWindow) {
+			ScreenVideo screenVid = ScreenVideo();
+			Mat traiter = screenVid.launchVideo();
+
+		}
 		window.display();
+
+		cv::Mat mask2 = cv::imread("test.png");
+
+		cv::imshow("Display window", mask2);
 	}
 }

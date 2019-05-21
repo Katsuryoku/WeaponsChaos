@@ -60,7 +60,6 @@ int main(int argc, char** argv)
 	vector<int> sol14 = b.giveClass("", 13, data);
 	vector<int> sol15 = b.giveClass("", 14, data);
 
-
 	float add = 0;
 	
 		for (int j = 0; j < 20; j++) {
@@ -85,6 +84,7 @@ int main(int argc, char** argv)
 		add = add/(20*15) ;
 
 
+
 	vector<vector<int>> confusion(20, vector<int>(20, 0));
 	for (int i = 0; i < 20; i++) {
 		confusion[i][sol1[i]]++;
@@ -106,11 +106,12 @@ int main(int argc, char** argv)
 
 	confusion;
 	string name = "D:/pro/Weapons chaos/test_screwdriver_2.png";
+
 	cv::Mat m1 = b.getImage(name);
 	int sol = b.giveClass1("",name, data);
 	int solbis = b.giveClass2("",m1,data);
 
-	cv::Mat m2 = b.getImage("D:/pro/Weapons chaos/BDD/screwdriver/screwdriver_2.png");
+	cv::Mat m2 = b.getImage("screwdriver_2.png");
 	//Canny(m,m,0,80);
 	cv::Mat mask2;
 	mask2 = b.extract(m2);

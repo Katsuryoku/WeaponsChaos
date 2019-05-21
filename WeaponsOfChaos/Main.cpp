@@ -126,7 +126,8 @@ int main()
 		}
 		if (natureWindow) {
 			ScreenVideo screenVid = ScreenVideo();
-			screenVid.getImage()
+			Mat traiter = screenVid.launchVideo();
+
 		}
 		window.display();
 

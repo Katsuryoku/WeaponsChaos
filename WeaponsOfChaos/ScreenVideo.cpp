@@ -40,7 +40,7 @@ Mat ScreenVideo::launchVideo()
 		{
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Escape) {
-					rend = 
+					rend = frameRGB;
 				}
 			}
 			if (event.type == sf::Event::Closed)

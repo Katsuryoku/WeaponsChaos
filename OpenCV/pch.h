@@ -9,6 +9,6 @@
 #ifndef PCH_H
 #define PCH_H
 
-#include "Analyse.h"
+//#include "Analyse.h"
 
 #endif //PCH_H

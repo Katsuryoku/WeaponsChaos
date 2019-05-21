@@ -17,5 +17,17 @@
 #include <memory.h>
 #include <tchar.h>
 
+#include "opencv2/opencv.hpp"
+#include <iostream>
+#include <fstream>
+
+
+#include "opencv2/core/core_c.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/ml/ml.hpp"
+#include <limits.h>
+#include <map>
+#include <string>
+#include <iostream>
 
 // référencer ici les en-têtes supplémentaires nécessaires à votre programme

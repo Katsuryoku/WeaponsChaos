@@ -7,7 +7,7 @@ ScreenVideo::ScreenVideo()
 	cv::VideoCapture cap(0); // open the video file for reading
 	if (!cap.isOpened())
 	{
-		return 0;
+		return;
 	}
 
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "RenderWindow");

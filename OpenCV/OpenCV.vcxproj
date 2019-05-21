@@ -91,12 +91,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>D:\opencv\OpenCV\build\include;D:\opencv\OpenCV\build\include\opencv2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opencv4\OpenCV\build\include;D:\opencv\OpenCV\build\include;D:\opencv\OpenCV\build\include\opencv2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\opencv\OpenCV\build\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\opencv4\OpenCV\build\lib;D:\opencv\OpenCV\build\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -157,9 +157,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Analyse.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="OpenCV.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

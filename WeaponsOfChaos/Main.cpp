@@ -7,11 +7,13 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
+	sf::RenderWindow window(sf::VideoMode(900, 900), "SFML WORK!");
 
 	Menu menu(window.getSize().x, window.getSize().y,5);
 
 	Character playr(sf::Vector2f(1.0f, 1.0f));
+	const int groundHeight = 700;
+	const float gravitySpeed = 0.3;
 	bool game = false;
 	bool chargeWindow = false;
 	bool natureWindow = false;
@@ -19,7 +21,23 @@ int main()
 	while (window.isOpen())
 	{
 		sf::Event event;
-
+		if (game) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+				playr.jumpRight();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+				playr.jumpLeft();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+				playr.jump();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+				playr.moveRight();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+				playr.moveLeft();
+			}
+		}
 		while (window.pollEvent(event))
 		{
 			switch (event.type)
@@ -30,16 +48,20 @@ int main()
 				case sf::Keyboard::Up:
 					if(menu.getInMenu())
 						menu.MoveUp();
+				case sf::Event::KeyReleased:
+					if (game)
+						playr.setIsJumping(false);
 					break;
-
 				case sf::Keyboard::Down:
 					if (menu.getInMenu())
 						menu.MoveDown();
 					break;
-
 				case sf::Keyboard::Escape:
 					if (!menu.getInMenu())
+					{
 						menu.setInMenu(true);
+						game = false;
+					};
 					break;
 				case sf::Keyboard::Return:
 					if (menu.getInMenu())
@@ -86,7 +108,13 @@ int main()
 
 		if (menu.getInMenu())
 			menu.draw(window);
-
+		if (game)
+		{
+			if (playr.getY() < groundHeight && playr.getIsJumping() == false) {
+				playr.moveGravity(gravitySpeed);
+			}
+			playr.drawTo(window);
+		}
 		window.display();
 	}
 }

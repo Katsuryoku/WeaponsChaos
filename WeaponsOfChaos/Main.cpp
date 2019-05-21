@@ -126,7 +126,7 @@ int main()
 		}
 		if (natureWindow) {
 			ScreenVideo screenVid = ScreenVideo();
-			screenVid.getImage()
+			//screenVid.getImage();
 		}
 		window.display();
 

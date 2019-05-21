@@ -6,7 +6,7 @@ Mat ScreenVideo::launchVideo()
 {
 	if (!cap.isOpened())
 	{
-		return;
+		return Mat(cv::Size(1,1),1);
 	}
 	cv::Mat rend;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "RenderWindow");
@@ -40,7 +40,7 @@ Mat ScreenVideo::launchVideo()
 		{
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Escape) {
-					rend = 
+					rend = Mat(cv::Size(1, 1), 1);
 				}
 			}
 			if (event.type == sf::Event::Closed)

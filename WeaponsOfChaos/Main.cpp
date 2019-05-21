@@ -45,9 +45,13 @@ int main()
 			case sf::Event::KeyReleased:
 				switch (event.key.code)
 				{
+				case sf::Keyboard::N:
+					if(game)
+						
 				case sf::Keyboard::Up:
 					if(menu.getInMenu())
 						menu.MoveUp();
+					break;
 				case sf::Event::KeyReleased:
 					if (game)
 						playr.setIsJumping(false);

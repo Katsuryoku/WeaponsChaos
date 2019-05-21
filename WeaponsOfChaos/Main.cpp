@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
@@ -9,14 +8,25 @@
 #include "opencv2/core/core_c.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/ml/ml.hpp"
+#include "Analyse.h"
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(900, 900), "SFML WORK!");
+	enum Nature { fire, water, grass, light, shadow};
+	std::ostringstream ssScore;
 
+	sf::Font arial;
+	arial.loadFromFile("arial.ttf");
+	sf::Text lblScore;
+	lblScore.setCharacterSize(30);
+	lblScore.setPosition({ 300, 700 });
+	lblScore.setFont(arial);
 	Menu menu(window.getSize().x, window.getSize().y,5);
-
+	Analyse analyse = Analyse();
 	Character playr(sf::Vector2f(1.0f, 1.0f));
 	ScreenVideo screenVid = ScreenVideo();
+	window.setKeyRepeatEnabled(true);
 	const int groundHeight = 700;
 	const float gravitySpeed = 0.3;
 	bool game = false;
@@ -52,7 +62,16 @@ int main()
 				{
 				case sf::Keyboard::N:
 					if (screenVid.getIsScreen()) {
-						cv::imshow("screen", screenVid.captureImage());
+						if (screenVid.getZone())
+							ssScore << "Nature: " << analyse.getColorType(screenVid.captureImage());
+						else
+						{
+
+							ifstream fichier;
+							fichier.open("test2.txt", ios::in);
+							Mat data = analyse.getData("", fichier);
+							ssScore << "Classe: " << analyse.giveClass2("", screenVid.captureImage(), data);
+						}
 					};
 					break;
 
@@ -124,6 +143,8 @@ int main()
 			}
 		}
 
+		lblScore.setString(ssScore.str());
+		ssScore.clear();
 		window.clear();
 
 		if (menu.getInMenu())
@@ -136,6 +157,7 @@ int main()
 			playr.drawTo(window);
 		}
 		if (screenVid.getIsScreen()) {
+			window.draw(lblScore);
 			screenVid.takeVideo();
 			screenVid.drawTo(window);
 		}

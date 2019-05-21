@@ -167,6 +167,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\OpenCV\Analyse.h" />
+    <ClInclude Include="Analyse.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Coin.h" />
@@ -190,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\OpenCV\Analyse.cpp" />
+    <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Coin.cpp" />

@@ -4,6 +4,7 @@
 
 bool ScreenVideo::takeVideo()
 {
+
 	if (!cap.isOpened())
 	{
 		cap= VideoCapture(0);
@@ -54,15 +55,6 @@ bool ScreenVideo::takeVideo()
 		sprite.setTexture(texture);
 	}
 	
-
-
-	if (!texture.loadFromImage(image))
-	{
-		std::cout << "image crash";
-		return false;
-	}
-
-	sprite.setTexture(texture);
 	}
 void ScreenVideo::drawTo(sf::RenderWindow & window)
 {
@@ -74,9 +66,12 @@ void ScreenVideo::drawTo(sf::RenderWindow & window)
 	}
 }
 Mat ScreenVideo::captureImage() {
-	if (zone)
+	if (zone) {
 		return zoneFrame;
-	return frame;
+	}
+	else {
+		return frame;
+	}
 }
 void ScreenVideo::closeCam() {
 	cap.release();

@@ -22,3 +22,18 @@ void Plateform::drawTo(sf::RenderWindow &window)
 	window.draw(rectangle);
 
 }
+
+int Plateform::getLength()
+{
+	return this->length_;
+}
+
+int Plateform::getBeginning()
+{
+	return this->beginning_;
+}
+
+int Plateform::getHeight()
+{
+	return this->height_;
+}

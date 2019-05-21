@@ -18,12 +18,12 @@ private:
 	int numberOfDoors;
 	std::string description;
 	Monster MonstersArray[1] = {};
-	Coin CoinsArray[1] = {};
+	list<Coin*> CoinsArray;
 	Ground* ground;
 public:
 	Level();
 	~Level();
 	void drawTo(sf::RenderWindow &window);
-	void generateCoins();
+	void generateCoins(int n);
 };
 

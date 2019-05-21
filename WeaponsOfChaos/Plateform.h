@@ -16,5 +16,8 @@ public:
 	Plateform(int height, int begin, int length); // ces coordonnés sont selon le repere image (0 0 en bas à gauche)
 	~Plateform();
 	void drawTo(sf::RenderWindow &window);
+	int getLength();
+	int getBeginning();
+	int getHeight();
 };
 

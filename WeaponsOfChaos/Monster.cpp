@@ -94,7 +94,7 @@ Monster::Monster(sf::Vector2f pos, int lvl, Nature nat, int mL, int s)
 
 Monster::Monster(sf::Vector2f pos, sf::Vector2f scale)
 {
-	if (!image.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/slime_sleep.png"))// Si le chargement du fichier a échoué
+	if (!image.loadFromFile("slime_sleep.png"))// Si le chargement du fichier a échoué
 	{
 
 	}

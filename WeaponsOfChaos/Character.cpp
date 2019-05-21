@@ -10,7 +10,7 @@ int Character::getY()
 
 Character::Character(sf::Vector2f scale)
 {
-	if (!image.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/test.png") )// Si le chargement du fichier a échoué
+	if (!image.loadFromFile("test.png") )// Si le chargement du fichier a échoué
 	{
 
 	}

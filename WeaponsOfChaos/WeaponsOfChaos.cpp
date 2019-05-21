@@ -31,7 +31,7 @@ int d() {
 	ssScore << "Score: " << score;
 
 	sf::Font arial;
-	arial.loadFromFile("D:/Cworkspace/WeaponsOfChaos/WeaponsOfChaos/arial.ttf");
+	arial.loadFromFile("arial.ttf");
 	sf::Text lblScore;
 	lblScore.setCharacterSize(30);
 	lblScore.setPosition({ 300, 300 });

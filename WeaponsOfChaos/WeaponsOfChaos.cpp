@@ -3,7 +3,95 @@
 
 #include "stdafx.h"
 #include "WeaponsOfChaos.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <sstream>
+#include <string>
+#include "Character.h"
+#include "Monster.h"
 
+int d() {
+	sf::RenderWindow window;
+
+	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
+
+	window.create(sf::VideoMode(900, 900), "SFML Gravity", sf::Style::Titlebar | sf::Style::Close);
+	window.setPosition(centerWindow);
+
+	Character player = Character(sf::Vector2f(1.0f, 1.0f));
+	player.setPos({ 50.0f, 700.0f });
+	Monster slime = Monster({300.0f, 350.0f }, { 1.0f, 1.0f });
+
+	//Score Objects:
+
+	int score = 0;
+
+
+	std::ostringstream ssScore;
+	ssScore << "Score: " << score;
+
+	sf::Font arial;
+	arial.loadFromFile("arial.ttf");
+	sf::Text lblScore;
+	lblScore.setCharacterSize(30);
+	lblScore.setPosition({ 300, 300 });
+	lblScore.setFont(arial);
+	lblScore.setString(ssScore.str());
+
+	window.setKeyRepeatEnabled(true);
+	//Gravity Variables:
+	const int groundHeight = 700;
+	const float gravitySpeed = 0.3;
+
+	//Main Loop:
+	while (window.isOpen()) {
+
+		sf::Event Event;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			player.jumpRight();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			player.jumpLeft();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			player.jump();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			player.moveRight();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			player.moveLeft();
+		}
+
+		//Event Loop:
+		while (window.pollEvent(Event)) {
+			switch (Event.type) {
+
+			case sf::Event::Closed:
+				window.close();
+
+			case sf::Event::KeyReleased:
+				player.setIsJumping( false);
+			}
+		}
+		//std::string dodo = std::to_string(slime.getPosition().x)+ " ; " + std::to_string(slime.getPosition().y);
+		//std::cout<<dodo;
+		//Gravity Logic:
+		if (player.getY() < groundHeight && player.getIsJumping() == false) {
+			player.moveGravity(gravitySpeed);
+		}
+		else {
+			slime.moveToPlayer(player.getPos());
+		}
+		window.clear();
+		window.draw(lblScore);
+		player.drawTo(window);
+		slime.drawTo(window);
+		window.display();
+	}
+	return 1;
+}
+/*
 #define MAX_LOADSTRING 100
 
 // Variables globales :
@@ -178,3 +266,4 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
+*/

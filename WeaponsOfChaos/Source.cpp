@@ -1,13 +1,15 @@
-#include <SFML_PATH/Graphics.hpp>
+#include "stdafx.h"
+#include <SFML/Graphics.hpp>
+#include "Level.h"
 
-int main()
+int dede()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(900, 900), "SFML works!");
 
 	while (window.isOpen())
 	{
+		Level* current = new Level;
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -16,7 +18,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		current->drawTo(window);
 		window.display();
 	}
 
